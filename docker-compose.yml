@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  go:
+    build:
+      context: .
+      target: dev
+    tty: true
+    stdin_open: true
+    volumes:
+    - .:/go/src/app
+    ports:
+    - 3000:3000
+  db:
+    image: mysql:5.7
+    container_name: go-mysql-demo
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOTPASSWORD}
+      MYSQL_DATABASE: go-mysql-demo
+      MYSQL_USER: ${MYSQLUSER}
+      MYSQL_PASSWORD: ${MYSQLPASSWORD}
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306
+
+volumes:
+  db-data:
+    driver: local

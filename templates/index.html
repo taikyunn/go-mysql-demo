@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Docker Test</title>
+</head>
+  <body>
+    <h1>ユーザー登録</h1>
+    <form action="/new" method="post">
+      <p>お名前：<input type="text" name="name"></p>
+      <p>メールアドレス：<input type="text" name="email"></p>
+      <input type="submit" value="送信">
+    </form>
+    <h2>登録データ一覧</h2>
+    {{range .user}}
+      <p>名前：{{ .Name }}</p>
+      <p>アドレス：{{ .Email }}</p>
+    {{ end }}
+  </body>
+</html>

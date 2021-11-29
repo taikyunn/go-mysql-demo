@@ -1,0 +1,1 @@
+go-mysqlのアプリをECSを使ってデプロイするdemo
