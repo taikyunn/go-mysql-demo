@@ -1,0 +1,21 @@
+{
+  "family": "go-mysql-demo-service",
+  "containerDefinitions": [
+      {
+          "name": "go-mysql-demo-service",
+          "image": "926330672208.dkr.ecr.ap-northeast-1.amazonaws.com/go-mysql-demo-go-production:latest",
+          "cpu": 128,
+          "memoryReservation": 128,
+          "portMappings": [
+              {
+                  "containerPort": 3000,
+                  "protocol": "tcp"
+              }
+          ],
+          "command": [
+              "/go/src/app/binary"
+          ],
+          "essential": true
+      }
+  ]
+}
