@@ -24,7 +24,7 @@ func gormConnect() *gorm.DB {
 	PASS := os.Getenv("API_PASS")
 	ADDRESS := os.Getenv("API_ADDRESS")
 	DBMS := "mysql"
-	DBNAME := "go-mysql-demo"
+	DBNAME := "go_mysql_demo"
 
 	// 本番環境の場合は値を上書きする
 	if os.Getenv("DB_ENV") == "production" {

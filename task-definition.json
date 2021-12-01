@@ -3,7 +3,7 @@
   "containerDefinitions": [
       {
           "name": "go-mysql-demo-service",
-          "image": "",
+          "image": "926330672208.dkr.ecr.ap-northeast-1.amazonaws.com/go-mysql-demo-go:latest",
           "cpu": 128,
           "memoryReservation": 128,
           "portMappings": [
@@ -11,6 +11,24 @@
                   "containerPort": 3000,
                   "protocol": "tcp"
               }
+          ],
+          "environment": [
+            {
+              "name": "DB_ADDRESS",
+              "value": "go-mysql-demo-1.cvfat2usql6c.ap-northeast-1.rds.amazonaws.com"
+            },
+            {
+              "name": "DB_ENV",
+              "value": "production"
+            },
+            {
+              "name": "DB_PASS",
+              "value": "password"
+            },
+            {
+              "name": "DB_USER",
+              "value": "admin"
+            }
           ],
           "command": [
               "./main"

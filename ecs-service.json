@@ -4,7 +4,7 @@
   "taskDefinition": "go-mysql-demo-service",
   "loadBalancers": [
       {
-          "targetGroupArn": "",
+          "targetGroupArn": "arn:aws:elasticloadbalancing:ap-northeast-1:926330672208:targetgroup/go-mysql-demo-tg/a7752ff604eba1de",
           "containerName": "go-mysql-demo-service",
           "containerPort": 3000
       }

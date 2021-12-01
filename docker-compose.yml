@@ -15,7 +15,8 @@ services:
     container_name: go-mysql-demo
     environment:
       MYSQL_ROOT_PASSWORD: ${ROOTPASSWORD}
-      MYSQL_DATABASE: go-mysql-demo
+      # これからDB名をつなげるときは_で
+      MYSQL_DATABASE: go_mysql_demo
       MYSQL_USER: ${MYSQLUSER}
       MYSQL_PASSWORD: ${MYSQLPASSWORD}
       TZ: 'Asia/Tokyo'
