@@ -71,10 +71,10 @@ func main() {
 
 	// 本番環境でもdevelopでも動くようにする
 	// API_URLが存在する：本番環境 存在しない：developとなる
-	if urlENV := os.Getenv("API_URL"); urlENV != "" {
-		port := os.Getenv("PORT")
-		r.Run(":" + port)
-	}
+	// if urlENV := os.Getenv("API_URL"); urlENV != "" {
+	// 	port := os.Getenv("PORT")
+	// 	r.Run(":" + port)
+	// }
 
 	r.Run(":3000")
 }

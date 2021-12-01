@@ -9,30 +9,29 @@ RUN apk update && apk add git
 COPY go.mod go.sum ./
 RUN go mod download
 EXPOSE 3000
-# ホットリロード機能を入れるためにgo get(こいつはmain.goでimportできないので注意)
-RUN go get -u github.com/cosmtrek/air
-# airでgo runさせるためにCMDを下記に変更させる。
-CMD ["air", "-c", ".air.toml"]
+
+CMD ["go", "run", "main.go"]
 
 # 本番環境
-FROM golang:1.15.7-alpine as builder
+FROM golang:1.15.2 as builder
 
-ENV ROOT=/go/src/app
-WORKDIR ${ROOT}
+WORKDIR /build
+COPY . /build/
 
-RUN apk update && apk add git
-COPY go.mod go.sum ./
-RUN go mod download
+RUN CGO_ENABLED=0 go build -a -installsuffix cgo --ldflags "-s -w" -o /build/main
 
-COPY . ${ROOT}
-RUN CGO_ENABLED=0 GOOS=linux go build -o $ROOT/binary
+FROM alpine:3.9.4
 
+LABEL environment="production"
 
-FROM scratch as prod
+WORKDIR /app
 
-ENV ROOT=/go/src/app
-WORKDIR ${ROOT}
-COPY --from=builder ${ROOT}/binary ${ROOT}
+RUN adduser -S -D -H -h /app appuser
+
+USER appuser
+
+COPY --from=builder /build/main /app/
 
 EXPOSE 3000
-CMD ["/go/src/app/binary"]
+
+ENTRYPOINT ["./main"]

@@ -3,7 +3,7 @@
   "containerDefinitions": [
       {
           "name": "go-mysql-demo-service",
-          "image": "926330672208.dkr.ecr.ap-northeast-1.amazonaws.com/go-mysql-demo-go-production:latest",
+          "image": "",
           "cpu": 128,
           "memoryReservation": 128,
           "portMappings": [
@@ -13,7 +13,7 @@
               }
           ],
           "command": [
-              "/go/src/app/binary"
+              "./main"
           ],
           "essential": true
       }
